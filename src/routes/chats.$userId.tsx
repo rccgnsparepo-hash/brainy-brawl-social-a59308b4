@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/lib/auth";

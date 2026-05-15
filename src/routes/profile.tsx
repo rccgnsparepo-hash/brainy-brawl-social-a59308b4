@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { Flame, LogOut, Instagram, Settings, Plus, Grid3x3, Zap, Swords, Trophy, Camera } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
