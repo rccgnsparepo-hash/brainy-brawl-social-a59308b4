@@ -8,8 +8,6 @@ import type { FeedPost } from "@/lib/types";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationsBell } from "@/components/notifications-bell";
 
-,
-});
 
 function HomePage() {
   const { user, profile } = useAuth();

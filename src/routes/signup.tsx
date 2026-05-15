@@ -5,8 +5,6 @@ import { useAuth } from "@/lib/auth";
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
-,
-});
 
 const AVATARS = ["🦊", "🦉", "🐺", "🦁", "🐯", "🐻", "🦅", "🐉", "🦄", "🐙"];
 const GRADES = ["Year 7", "Year 8", "Year 9", "Year 10", "Year 11", "Year 12", "Year 13"];

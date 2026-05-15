@@ -5,8 +5,6 @@ import { useAuth } from "@/lib/auth";
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
-,
-});
 
 function LoginPage() {
   const nav = useNavigate();

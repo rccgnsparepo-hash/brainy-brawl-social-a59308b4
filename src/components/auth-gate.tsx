@@ -1,5 +1,5 @@
 import { useEffect, ReactNode } from "react";
-import { useNavigate } ;
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/lib/auth";
 
 const PUBLIC_ROUTES = new Set(["/login", "/signup"]);

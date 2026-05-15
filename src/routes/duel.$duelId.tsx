@@ -5,8 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { Swords, Clock, Trophy, ArrowLeft, Zap } from "lucide-react";
 
-,
-});
 
 const ROUND_SECONDS = 6;
 

@@ -5,8 +5,6 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { Search, MessageCircle } from "lucide-react";
 
-,
-});
 
 interface Conv {
   other_id: string;

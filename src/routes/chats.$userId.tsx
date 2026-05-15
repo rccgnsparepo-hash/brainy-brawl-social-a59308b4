@@ -7,8 +7,6 @@ import { ArrowLeft, Send, Phone, Video, Paperclip, Mic, Eye, Image as ImgIcon, S
 import { toast } from "sonner";
 import { uploadChatMedia, uploadChatBg } from "@/lib/upload";
 
-,
-});
 
 function ChatPage() {
   const { userId } = useParams() as any;

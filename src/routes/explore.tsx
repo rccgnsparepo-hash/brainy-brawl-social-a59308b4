@@ -3,8 +3,6 @@ import { Search, TrendingUp, Swords, Users, School } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-,
-});
 
 const sections = ["School Wars", "Top Minds", "Brain Challenges"] as const;
 

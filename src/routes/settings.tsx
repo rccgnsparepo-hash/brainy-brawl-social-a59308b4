@@ -6,8 +6,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Bell, Plus } from "lucide-react";
 import { toast } from "sonner";
 
-,
-});
 
 const KEYS = [
   ["in_app", "In-app notifications", "Show toasts and the notification bell"],

@@ -10,8 +10,6 @@ import { PostCard } from "@/components/post-card";
 import { uploadAvatar } from "@/lib/upload";
 import { toast } from "sonner";
 
-,
-});
 
 function ProfilePage() {
   const { user, profile, signOut } = useAuth();

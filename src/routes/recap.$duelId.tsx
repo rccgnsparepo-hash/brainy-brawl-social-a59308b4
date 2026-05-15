@@ -5,8 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { ArrowLeft, Trophy, Clock, Zap } from "lucide-react";
 
-,
-});
 
 function RecapPage() {
   const { duelId } = useParams() as any;

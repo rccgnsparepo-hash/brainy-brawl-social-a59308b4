@@ -6,8 +6,6 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-,
-});
 
 const types = [
   { id: "text", label: "Post", icon: FileText, color: "text-neon-blue" },
