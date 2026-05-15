@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/app-shell";
 import { PostCard } from "@/components/post-card";
 import { Flame, Sparkles } from "lucide-react";
@@ -9,15 +8,6 @@ import type { FeedPost } from "@/lib/types";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationsBell } from "@/components/notifications-bell";
 
-export const Route = createFileRoute("/")({
-  component: HomePage,
-  head: () => ({
-    meta: [
-      { title: "Home — MindSprint Social" },
-      { name: "description", content: "Your live feed of brain challenges, duels, and school rivalries." },
-    ],
-  }),
-});
 
 function HomePage() {
   const { user, profile } = useAuth();
@@ -112,3 +102,5 @@ function HomePage() {
     </AppShell>
   );
 }
+
+export default HomePage;

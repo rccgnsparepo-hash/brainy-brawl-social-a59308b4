@@ -1,17 +1,13 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { ArrowLeft, Trophy, Clock, Zap } from "lucide-react";
 
-export const Route = createFileRoute("/recap/$duelId")({
-  component: RecapPage,
-  head: () => ({ meta: [{ title: "Duel Recap — MindSprint" }] }),
-});
 
 function RecapPage() {
-  const { duelId } = Route.useParams();
+  const { duelId } = useParams() as any;
   const { user } = useAuth();
   const nav = useNavigate();
   const [duel, setDuel] = useState<any>(null);
@@ -55,7 +51,7 @@ function RecapPage() {
     <AppShell
       title={
         <>
-          <button onClick={() => nav({ to: "/arena" })} className="rounded-full glass p-2"><ArrowLeft className="h-4 w-4" /></button>
+          <button onClick={() => nav("/arena")} className="rounded-full glass p-2"><ArrowLeft className="h-4 w-4" /></button>
           <div className="font-display font-bold">Recap</div>
           <div className="w-8" />
         </>
@@ -104,7 +100,7 @@ function RecapPage() {
         {rounds.length === 0 && <div className="text-center text-sm text-muted-foreground">No rounds recorded.</div>}
       </div>
 
-      <button onClick={() => nav({ to: "/arena" })} className="mt-5 w-full rounded-full gradient-primary py-3 text-sm font-bold text-primary-foreground">
+      <button onClick={() => nav("/arena")} className="mt-5 w-full rounded-full gradient-primary py-3 text-sm font-bold text-primary-foreground">
         Back to Arena
       </button>
     </AppShell>
@@ -122,3 +118,5 @@ function RoundSide({ label, correct, ans, ms }: { label: string; correct: boolea
     </div>
   );
 }
+
+export default RecapPage;

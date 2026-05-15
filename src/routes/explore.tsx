@@ -1,18 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/app-shell";
 import { Search, TrendingUp, Swords, Users, School } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/explore")({
-  component: ExplorePage,
-  head: () => ({
-    meta: [
-      { title: "Explore — MindSprint Social" },
-      { name: "description", content: "Discover trending students, school wars, and brain challenges." },
-    ],
-  }),
-});
 
 const sections = ["School Wars", "Top Minds", "Brain Challenges"] as const;
 
@@ -182,3 +172,5 @@ function ExplorePage() {
 function Empty({ label }: { label: string }) {
   return <div className="glass rounded-2xl p-6 text-center text-sm text-muted-foreground">{label}</div>;
 }
+
+export default ExplorePage;

@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/lib/auth";
@@ -7,13 +7,9 @@ import { ArrowLeft, Send, Phone, Video, Paperclip, Mic, Eye, Image as ImgIcon, S
 import { toast } from "sonner";
 import { uploadChatMedia, uploadChatBg } from "@/lib/upload";
 
-export const Route = createFileRoute("/chats/$userId")({
-  component: ChatPage,
-  head: () => ({ meta: [{ title: "Chat — MindSprint" }] }),
-});
 
 function ChatPage() {
-  const { userId } = Route.useParams();
+  const { userId } = useParams() as any;
   const { user, profile } = useAuth();
   const nav = useNavigate();
   const [other, setOther] = useState<any>(null);
@@ -134,7 +130,7 @@ function ChatPage() {
       fullScreen
       title={
         <>
-          <button onClick={() => nav({ to: "/chats" })} className="rounded-full glass p-2"><ArrowLeft className="h-4 w-4" /></button>
+          <button onClick={() => nav("/chats")} className="rounded-full glass p-2"><ArrowLeft className="h-4 w-4" /></button>
           <div className="flex flex-1 items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full gradient-primary text-base">
               {other?.avatar_url ? <img src={other.avatar_url} alt="" className="h-full w-full object-cover" /> : (other?.avatar ?? "👤")}
@@ -145,8 +141,8 @@ function ChatPage() {
             </div>
           </div>
           <div className="flex gap-1">
-            <button onClick={() => nav({ to: "/call/$peerId", params: { peerId: userId }, search: { video: false } })} className="rounded-full glass p-2" aria-label="Voice"><Phone className="h-4 w-4" /></button>
-            <button onClick={() => nav({ to: "/call/$peerId", params: { peerId: userId }, search: { video: true } })} className="rounded-full glass p-2" aria-label="Video"><Video className="h-4 w-4" /></button>
+            <button onClick={() => nav(`/call/${userId}?video=0`)} className="rounded-full glass p-2" aria-label="Voice"><Phone className="h-4 w-4" /></button>
+            <button onClick={() => nav(`/call/${userId}?video=1`)} className="rounded-full glass p-2" aria-label="Video"><Video className="h-4 w-4" /></button>
             <button onClick={() => bgRef.current?.click()} className="rounded-full glass p-2" aria-label="Background"><ImgIcon className="h-4 w-4" /></button>
             <input ref={bgRef} type="file" accept="image/*" hidden onChange={setBg} />
           </div>
@@ -235,3 +231,5 @@ function MessageBody({ m, mine, onOpenViewOnce }: { m: any; mine: boolean; onOpe
   }
   return <span className="whitespace-pre-wrap">{m.content}</span>;
 }
+
+export default ChatPage;
