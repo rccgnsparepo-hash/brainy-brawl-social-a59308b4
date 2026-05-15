@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
@@ -6,9 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Bell, Plus } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/settings")({
-  component: SettingsPage,
-  head: () => ({ meta: [{ title: "Settings — MindSprint" }] }),
+,
 });
 
 const KEYS = [
@@ -76,7 +74,7 @@ function SettingsPage() {
     <AppShell
       title={
         <>
-          <button onClick={() => nav({ to: "/profile" })} className="rounded-full glass p-2">
+          <button onClick={() => nav("/profile")} className="rounded-full glass p-2">
             <ArrowLeft className="h-4 w-4" />
           </button>
           <div className="font-display font-bold">Settings</div>
@@ -115,3 +113,5 @@ function SettingsPage() {
     </AppShell>
   );
 }
+
+export default SettingsPage;

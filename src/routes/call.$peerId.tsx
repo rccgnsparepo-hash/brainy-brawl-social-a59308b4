@@ -1,20 +1,16 @@
-import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { useNavigate, useSearch } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/lib/auth";
-import { useServerFn } from "@tanstack/react-start";
-import { issueLivekitToken } from "@/lib/livekit.functions";
 import { ArrowLeft, Mic, MicOff, Video, VideoOff, PhoneOff } from "lucide-react";
 import { Room, RoomEvent, Track, type RemoteTrack, type RemoteParticipant, createLocalTracks } from "livekit-client";
 
-export const Route = createFileRoute("/call/$peerId")({
-  component: CallPage,
-  validateSearch: (s: Record<string, unknown>) => ({ video: s.video === "1" || s.video === true }),
+,
   head: () => ({ meta: [{ title: "Call — MindSprint" }] }),
 });
 
 function CallPage() {
-  const { peerId } = Route.useParams();
+  const { peerId } = useParams() as any;
   const { video } = useSearch({ from: "/call/$peerId" });
   const { user } = useAuth();
   const nav = useNavigate();
@@ -62,7 +58,7 @@ function CallPage() {
     setCamOn(next);
     await room.localParticipant.setCameraEnabled(next);
   };
-  const hangup = () => { room?.disconnect(); nav({ to: "/chats/$userId", params: { userId: peerId } }); };
+  const hangup = () => { room?.disconnect(); nav(`/chats/${peerId}`); };
 
   return (
     <AppShell title={
@@ -91,3 +87,5 @@ function CallPage() {
     </AppShell>
   );
 }
+
+export default CallPage;

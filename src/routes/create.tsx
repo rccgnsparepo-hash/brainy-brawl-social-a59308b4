@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useState } from "react";
 import { FileText, Zap, Plus, X } from "lucide-react";
@@ -6,14 +6,7 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/create")({
-  component: CreatePage,
-  head: () => ({
-    meta: [
-      { title: "Create — MindSprint Social" },
-      { name: "description", content: "Post a thought or drop a brain challenge." },
-    ],
-  }),
+,
 });
 
 const types = [
@@ -72,7 +65,7 @@ function CreatePage() {
       });
       if (error) throw error;
       toast.success("Posted!");
-      nav({ to: "/" });
+      nav("/");
     } catch (e: any) {
       toast.error(e.message ?? "Failed");
     } finally {
@@ -199,3 +192,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     </label>
   );
 }
+
+export default CreatePage;

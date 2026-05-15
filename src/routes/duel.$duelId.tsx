@@ -1,19 +1,17 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { Swords, Clock, Trophy, ArrowLeft, Zap } from "lucide-react";
 
-export const Route = createFileRoute("/duel/$duelId")({
-  component: DuelPage,
-  head: () => ({ meta: [{ title: "Duel — MindSprint" }] }),
+,
 });
 
 const ROUND_SECONDS = 6;
 
 function DuelPage() {
-  const { duelId } = Route.useParams();
+  const { duelId } = useParams() as any;
   const { user } = useAuth();
   const nav = useNavigate();
   const [duel, setDuel] = useState<any>(null);
@@ -147,7 +145,7 @@ function DuelPage() {
     <AppShell
       title={
         <>
-          <button onClick={() => nav({ to: "/arena" })} className="rounded-full glass p-2"><ArrowLeft className="h-4 w-4" /></button>
+          <button onClick={() => nav("/arena")} className="rounded-full glass p-2"><ArrowLeft className="h-4 w-4" /></button>
           <div className="font-display font-bold">Live Duel</div>
           <div className="rounded-full bg-destructive/15 px-2 py-1 text-[10px] font-semibold uppercase text-destructive">Live</div>
         </>
@@ -217,7 +215,7 @@ function DuelPage() {
             <button onClick={() => nav({ to: "/recap/$duelId", params: { duelId } })} className="flex-1 rounded-full gradient-primary px-6 py-2 text-sm font-bold text-primary-foreground">
               View recap
             </button>
-            <button onClick={() => nav({ to: "/arena" })} className="flex-1 rounded-full glass-strong px-6 py-2 text-sm font-bold">
+            <button onClick={() => nav("/arena")} className="flex-1 rounded-full glass-strong px-6 py-2 text-sm font-bold">
               Arena
             </button>
           </div>
@@ -258,3 +256,5 @@ function PlayerCard({ p, score, reverse, you }: { p: any; score: number; reverse
     </div>
   );
 }
+
+export default DuelPage;

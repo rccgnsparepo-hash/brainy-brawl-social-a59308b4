@@ -1,13 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { Search, MessageCircle } from "lucide-react";
 
-export const Route = createFileRoute("/chats/")({
-  component: ChatsPage,
-  head: () => ({ meta: [{ title: "Chats — MindSprint" }] }),
+,
 });
 
 interface Conv {
@@ -100,7 +98,7 @@ function ChatsPage() {
       {q && (
         <div className="mb-4 space-y-2">
           {results.map((p) => (
-            <Link key={p.id} to="/chats/$userId" params={{ userId: p.id }} className="glass flex items-center gap-3 rounded-xl p-3">
+            <Link key={p.id} to={`/chats/${p.id}`} className="glass flex items-center gap-3 rounded-xl p-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-primary text-lg">{p.avatar}</div>
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm font-semibold">{p.display_name}</div>
@@ -121,7 +119,7 @@ function ChatsPage() {
             </div>
           )}
           {convs.map((c) => (
-            <Link key={c.other_id} to="/chats/$userId" params={{ userId: c.other_id }} className="glass flex items-center gap-3 rounded-xl p-3">
+            <Link key={c.other_id} to={`/chats/${c.other_id}`} className="glass flex items-center gap-3 rounded-xl p-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-full gradient-primary text-xl">{c.other.avatar}</div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between">
@@ -137,3 +135,5 @@ function ChatsPage() {
     </AppShell>
   );
 }
+
+export default ChatsPage;

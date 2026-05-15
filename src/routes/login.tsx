@@ -1,13 +1,11 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/login")({
-  component: LoginPage,
-  head: () => ({ meta: [{ title: "Sign in — MindSprint Social" }] }),
+,
 });
 
 function LoginPage() {
@@ -18,7 +16,7 @@ function LoginPage() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (user) nav({ to: "/" });
+    if (user) nav("/");
   }, [user, nav]);
 
   const submit = async (e: React.FormEvent) => {
@@ -30,7 +28,7 @@ function LoginPage() {
       toast.error(error.message);
       return;
     }
-    nav({ to: "/" });
+    nav("/");
   };
 
   return (
@@ -96,3 +94,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     </label>
   );
 }
+
+export default LoginPage;

@@ -1,5 +1,5 @@
 import { useEffect, ReactNode } from "react";
-import { useNavigate, useRouterState } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/auth";
 
 const PUBLIC_ROUTES = new Set(["/login", "/signup"]);
@@ -12,7 +12,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (loading) return;
-    if (!user && !isPublic) nav({ to: "/login" });
+    if (!user && !isPublic) nav("/login");
   }, [user, loading, isPublic, nav]);
 
   if (loading) {

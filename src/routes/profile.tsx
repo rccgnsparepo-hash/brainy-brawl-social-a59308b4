@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { Flame, LogOut, Instagram, Settings, Plus, Grid3x3, Zap, Swords, Trophy, Camera } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -10,11 +10,7 @@ import { PostCard } from "@/components/post-card";
 import { uploadAvatar } from "@/lib/upload";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/profile")({
-  component: ProfilePage,
-  head: () => ({
-    meta: [{ title: "Profile — MindSprint" }, { name: "description", content: "Status, XP, streak, badges, posts." }],
-  }),
+,
 });
 
 function ProfilePage() {
@@ -195,3 +191,5 @@ function computeBadges(p: { streak: number; wins: number; level: number; xp: num
   if (p.xp >= 1000) out.push({ icon: "📚", label: "Scholar" });
   return out;
 }
+
+export default ProfilePage;

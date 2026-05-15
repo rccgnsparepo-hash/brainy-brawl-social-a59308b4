@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { AppShell } from "@/components/app-shell";
 import { Swords, Zap, Trophy, Radio, Clock, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -6,14 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/arena")({
-  component: ArenaPage,
-  head: () => ({
-    meta: [
-      { title: "Arena — MindSprint Social" },
-      { name: "description", content: "Live brain duels and challenge boards." },
-    ],
-  }),
+,
 });
 
 interface DuelRow {
@@ -82,7 +75,7 @@ function ArenaPage() {
           if (d.player_a === user.id || d.player_b === user.id) {
             setMatching(false);
             toast.success("Match found!");
-            nav({ to: "/duel/$duelId", params: { duelId: d.id } });
+            nav(`/duel/${d.id}`);
           }
         },
       )
@@ -103,7 +96,7 @@ function ArenaPage() {
     const r = data as { matched: boolean; duel_id?: string };
     if (r.matched && r.duel_id) {
       setMatching(false);
-      nav({ to: "/duel/$duelId", params: { duelId: r.duel_id } });
+      nav(`/duel/${r.duel_id}`);
     }
   };
 
@@ -147,7 +140,7 @@ function ArenaPage() {
         {activeDuels.length === 0 && <div className="glass rounded-2xl p-4 text-center text-xs text-muted-foreground">No active duels. Start one!</div>}
         <div className="space-y-2">
           {activeDuels.map((d) => (
-            <button key={d.id} onClick={() => nav({ to: "/duel/$duelId", params: { duelId: d.id } })} className="glass flex w-full items-center gap-3 rounded-2xl p-3 text-left">
+            <button key={d.id} onClick={() => nav(`/duel/${d.id}`)} className="glass flex w-full items-center gap-3 rounded-2xl p-3 text-left">
               <Player avatar={d.a?.avatar ?? "👤"} name={d.a?.display_name ?? "?"} />
               <div className="flex flex-col items-center text-xs">
                 <span className="font-display text-lg font-bold text-gradient">
@@ -213,3 +206,5 @@ function Player({ avatar, name, reverse }: { avatar: string; name: string; rever
     </div>
   );
 }
+
+export default ArenaPage;
