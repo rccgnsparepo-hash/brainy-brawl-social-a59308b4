@@ -1,6 +1,6 @@
 import { AppShell } from "@/components/app-shell";
 import { PostCard } from "@/components/post-card";
-import { Flame, Sparkles, Image as ImageIcon, Crown, Star } from "lucide-react";
+import { Flame, Sparkles, Image as ImageIcon, Crown } from "lucide-react";
 import { useAuth, levelProgress } from "@/lib/auth";
 import { useEffect, useState } from "react";
 import { fetchFeed } from "@/lib/feed";
@@ -19,7 +19,7 @@ function HomePage() {
   const load = async () => {
     if (!user) return;
     try {
-      await supabase.rpc("create_daily_challenges", { _count: 3 }).catch(() => null);
+      await supabase.rpc("create_daily_challenges", { _count: 3 });
       const [{ data: dailyRows }, data] = await Promise.all([
         supabase.from("challenges").select("*").eq("is_daily", true).order("created_at", { ascending: false }).limit(3),
         fetchFeed(user.id),
